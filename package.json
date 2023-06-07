@@ -1,6 +1,6 @@
 {
   "name": "@contentos/spacesvr",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "A standardized reality for future of the 3D Web",
   "keywords": [
@@ -19,7 +19,7 @@
   "homepage": "https://cos.space/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cos-space/spacesvrt"
+    "url": "git+https://github.com/cos-space/spacesvr"
   },
   "author": {
     "name": "alex shortt",
