@@ -44,7 +44,8 @@ const SnapTurn = (props: SnapTurnProps) => {
 
   useFrame(() => {
     if (controller && controller.inputSource.gamepad) {
-      const [, , x] = controller.inputSource.gamepad.axes;
+      const [touchPad_x, , thumbStick_x] = controller.inputSource.gamepad.axes;
+      const x = thumbStick_x || touchPad_x;
 
       if (Math.abs(x) > threshold) {
         if (!isSnapping.current) {
@@ -62,14 +63,23 @@ const SnapTurn = (props: SnapTurnProps) => {
 
 const SmoothLocomotion = (props: SmoothLocomotionProps) => {
   const { hand = "left", direction } = props;
+  const { player } = useXR();
 
   const controller = useController(hand);
 
   useFrame(() => {
     if (controller && controller.inputSource.gamepad) {
-      const [, , x, z] = controller.inputSource.gamepad.axes;
+      const [
+        touchPad_x,
+        touchPad_z,
+        thumbStick_x,
+        thumbStick_z,
+      ] = controller.inputSource.gamepad.axes;
+      const x = thumbStick_x || touchPad_x;
+      const z = thumbStick_z || touchPad_z;
       direction.current.x = x;
       direction.current.z = z;
+      direction.current.applyEuler(player.rotation);
     }
   });
 
