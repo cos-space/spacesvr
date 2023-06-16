@@ -8,6 +8,11 @@ function isFirefoxReality() {
   return /(Mobile VR)/i.test(window.navigator.userAgent);
 }
 
+export function isDesktopReality() {
+  const isSupported = "xr" in window.navigator;
+  return isSupported;
+}
+
 export function isStandaloneVR() {
   return isOculusBrowser() || isFirefoxReality();
 }

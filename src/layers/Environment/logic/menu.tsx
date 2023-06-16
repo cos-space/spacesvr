@@ -2,7 +2,7 @@ import { MenuItem, useEnvironment } from "../logic/environment";
 import { useThree } from "@react-three/fiber";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
-import { isStandaloneVR } from "../../../logic/browser";
+import { isStandaloneVR, isDesktopReality } from "../../../logic/browser";
 
 /**
  * Component to register menu items to the environment.
@@ -71,7 +71,7 @@ export const useVRMenuItem = (): MenuItem | undefined => {
     }
   }, [gl.xr, setDevice, setPaused]);
 
-  if (!isStandaloneVR()) {
+  if (!isStandaloneVR() && !isDesktopReality()) {
     return undefined;
   }
 
